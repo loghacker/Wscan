@@ -2,8 +2,6 @@
 
 from os import system
 
-import Owasp
-
 try:
     print("""
     Choose option:
@@ -13,7 +11,8 @@ try:
 
     if a == 1:
         print("Entering sql injection....")
-        Owasp.sqli()
+        system('clear')
+        system('./owasp/sqli.py')
     else:
         print('wrong entry')
 

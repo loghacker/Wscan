@@ -4,8 +4,9 @@ import requests
 from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin
 from pprint import pprint
+from os import system
 
-def sqli():
+try:
     s = requests.Session()
     s.headers[
         "User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Safari/537.36"
@@ -89,3 +90,17 @@ def sqli():
         print(str("URL:http://testphp.vulnweb.com/artists.php?artist=1"))
         url = input("URL:")  # input the url
         scan_sql_injection(url)
+
+    b=input("\n Do you want scan again (y/n): ")
+    if b=='y' or b=='Y':
+        system('./owasp/sqli.py')
+    else:
+        system('./owasp/main.py')
+
+
+except KeyboardInterrupt:
+    a = input("Do you want to EXIT (y/n): ")
+    if a == 'n' or a == 'N':
+        system('./owasp/sqli.py')
+    else:
+        system('./owasp/main.py')
