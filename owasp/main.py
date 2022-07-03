@@ -17,7 +17,7 @@ try:
     elif a == 2:
         print("Entering XSS injection....")
         system('clear')
-        system('./owasp/xxs.py')
+        system('./owasp/xss.py')
     else:
         print('wrong entry')
 

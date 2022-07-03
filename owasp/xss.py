@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import requests
+from os import system
 from pprint import pprint
 from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin
