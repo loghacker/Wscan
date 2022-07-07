@@ -1,23 +1,25 @@
 #!/usr/bin/python3
 
 from os import system
-
+import scan
 try:
     print("""
     Choose option:
         1. Sql injection
         2. XSS injection
+        
+        Enter 0 to go back
     """)
     a = int(input("Enter here: "))
 
     if a == 1:
         print("Entering sql injection....")
         system('clear')
-        system('./owasp/sqli.py')
+        scan.sqli()
     elif a == 2:
         print("Entering XSS injection....")
         system('clear')
-        system('./owasp/xss.py')
+        scan.xss()
     else:
         print('wrong entry')
 
@@ -27,6 +29,6 @@ except KeyboardInterrupt:
         system('./owasp/main.py')
 
     else:
-        print("Exiting...")
+        print("./main.py")
 
 
