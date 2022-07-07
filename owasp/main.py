@@ -14,12 +14,14 @@ try:
 
     if a == 1:
         print("Entering sql injection....")
-        system('clear')
+
         scan.sqli()
     elif a == 2:
         print("Entering XSS injection....")
-        system('clear')
+
         scan.xss()
+    elif a==0:
+        system("./main.py")
     else:
         print('wrong entry')
 
@@ -29,6 +31,6 @@ except KeyboardInterrupt:
         system('./owasp/main.py')
 
     else:
-        print("./main.py")
+        system("./main.py")
 
 
