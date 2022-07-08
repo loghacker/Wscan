@@ -3,23 +3,23 @@
 from os import system
 import scan
 try:
+    system('clear')
     print("""
     Choose option:
         1. Sql injection
         2. XSS injection
+        3. Broken access controll / IDOR 
         
         Enter 0 to go back
     """)
     a = int(input("Enter here: "))
 
     if a == 1:
-        print("Entering sql injection....")
-
         scan.sqli()
     elif a == 2:
-        print("Entering XSS injection....")
-
         scan.xss()
+    elif a==3:
+        scan.idor()
     elif a==0:
         system("./main.py")
     else:

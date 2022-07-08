@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-
+import urllib.request
+import webbrowser
 import requests
-import sys
 from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin
 from pprint import pprint
 from os import system
-
 def sqli():
     try:
         system('clear')
@@ -176,6 +175,46 @@ def xss():
             xss()
         else:
             system('./owasp/main.py')
+
+
+def idor():
+    try:
+        system("clear")
+        urlin = input("Enter Url (http://examble.com/id): ")
+        acc_id = input("Enter id from url: ")
+        for i in range(10):
+            id = acc_id.replace(acc_id[len(acc_id) - 1], str(i))
+            id1 = id.replace(id[len(id) - 1], str(i))
+            url = urlin.replace(acc_id, id1)
+            print(url)
+            status_code = urllib.request.urlopen(url).getcode()
+            if status_code == 200:
+                webbrowser.open(url)
+        print("Looks idor available in these sites check manually")
+
+        b = input("\n Do you want scan again (y/n): ")
+        if b == 'y' or b == 'Y':
+            idor()
+        else:
+            system('./owasp/main.py')
+    except KeyboardInterrupt:
+        a = input("\nDo you want to EXIT (y/n): ")
+        if a == 'n' or a == 'N':
+            idor()
+        else:
+            system('./owasp/main.py')
+    except:
+        print("""\n\nSeems secure :( 
+You can't do idor attack on this website""")
+        b = input("\n Do you want scan again (y/n): ")
+        if b == 'y' or b == 'Y':
+            idor()
+        else:
+            system('./owasp/main.py')
+
+
+
+
 
 
 
