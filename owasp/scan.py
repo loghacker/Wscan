@@ -193,7 +193,7 @@ def idor():
             status_code = urllib.request.urlopen(url).getcode()
             if status_code == 200:
                 webbrowser.open(url)
-        print("Looks idor available in these sites check manually")
+        print("\n\nLooks idor available in these sites check manually")
 
         b = input("\n Do you want scan again (y/n): ")
         if b == 'y' or b == 'Y':
