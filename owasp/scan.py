@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin
 from pprint import pprint
 from os import system
+
+#sql injection
 def sqli():
     try:
         system('clear')
@@ -105,6 +107,7 @@ def sqli():
         else:
             system('./owasp/main.py')
 
+#XSS
 def xss():
     try:
         system('clear')
@@ -176,7 +179,7 @@ def xss():
         else:
             system('./owasp/main.py')
 
-
+# broken access control
 def idor():
     try:
         system("clear")
