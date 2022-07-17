@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin
 from pprint import pprint
 from os import system
+from os.path import exists
 
 #sql injection
 def sqli():
@@ -250,3 +251,23 @@ def bac():
         bac()
 
 
+def sens():
+    system('clear')
+    path = input("Enter wordlist (/usr/share/rockyout.txt): ")
+    check = exists(path)
+    if check == True:
+        sub_list = open(path).read()
+        directories = sub_list.splitlines()
+        a = input("Enter URL (http://google.com/):")
+        print("\n")
+        for dir in directories:
+            dir_enum = a + dir
+            r = requests.get(dir_enum)
+            if r.status_code == 404:
+                pass
+            else:
+                print("Directory:", dir_enum)
+    else:
+        print("Wordlist not exist. Try again")
+        time.sleep(5)
+        sens()

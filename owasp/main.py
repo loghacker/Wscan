@@ -10,6 +10,8 @@ try:
         2. XSS injection
         3. Broken access control / IDOR 
         4. Broken Authentication Control 
+        5. Sensitive data exposure
+        
         Enter 0 to go back
     """)
     a = int(input("Enter here: "))
@@ -22,6 +24,8 @@ try:
         scan.idor()
     elif a==4:
         scan.bac()
+    elif a==5:
+        scan.sens()
     elif a==0:
         system("./main.py")
     else:
