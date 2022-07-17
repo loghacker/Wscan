@@ -8,8 +8,8 @@ try:
     Choose option:
         1. Sql injection
         2. XSS injection
-        3. Broken access controll / IDOR 
-        
+        3. Broken access control / IDOR 
+        4. Broken Authentication Control 
         Enter 0 to go back
     """)
     a = int(input("Enter here: "))
@@ -20,6 +20,8 @@ try:
         scan.xss()
     elif a==3:
         scan.idor()
+    elif a==4:
+        scan.bac()
     elif a==0:
         system("./main.py")
     else:

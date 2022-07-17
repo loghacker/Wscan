@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import time
+from termcolor import colored
 import urllib.request
 import webbrowser
 import requests
@@ -216,8 +218,33 @@ You can't do idor attack on this website""")
             system('./owasp/main.py')
 
 
+def bac():
+    try:
+        system('clear')
+        url = input("Enter url (http://google.com): ")
+        s = requests.Session()
+        res = s.get(url)
+        cook = s.cookies.get_dict()
+        if 'user' in cook or 'username' in cook or 'passwd' in cook or 'password' in cook or 'pass' in cook or 'role' in cook:
+            print("\n\n[1] : Chance to be get hacked by broken cookie authentication\n\n")
+        else:
+            print("\n\n[1] : Cookie side is secure\n\n")
+        b = input("\n Do you want scan again (y/n): ")
+        if b == 'y' or b == 'Y':
+            bac()
+        else:
+            system('./owasp/main.py')
 
-
-
+    except KeyboardInterrupt:
+        a = input("\nDo you want to EXIT (y/n): ")
+        if a == 'n' or a == 'N':
+            bac()
+        else:
+            system('./owasp/main.py')
+    except:
+        print (colored("\n\nYour entry was wrong.\n","red"))
+        print(colored("Try correct url format (http://google.com)", "green"))
+        time.sleep(5)
+        bac()
 
 
