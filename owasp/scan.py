@@ -227,16 +227,18 @@ def bac():
         cook = s.cookies.get_dict()
         if 'user' in cook or 'username' in cook or 'passwd' in cook or 'password' in cook or 'pass' in cook or 'role' in cook:
             print("\n\n[1] : Chance to be get hacked by broken cookie authentication\n\n")
+            print(cook)
         else:
             print("\n\n[1] : Cookie side is secure\n\n")
-        b = input("\n Do you want scan again (y/n): ")
+            print(cook)
+        b = input("\n\n Do you want scan again (y/n): ")
         if b == 'y' or b == 'Y':
             bac()
         else:
             system('./owasp/main.py')
 
     except KeyboardInterrupt:
-        a = input("\nDo you want to EXIT (y/n): ")
+        a = input("\n\nDo you want to EXIT (y/n): ")
         if a == 'n' or a == 'N':
             bac()
         else:
