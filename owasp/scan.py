@@ -252,22 +252,41 @@ def bac():
 
 
 def sens():
-    system('clear')
-    path = input("Enter wordlist (/usr/share/rockyout.txt): ")
-    check = exists(path)
-    if check == True:
-        sub_list = open(path).read()
-        directories = sub_list.splitlines()
-        a = input("Enter URL (http://google.com/):")
-        print("\n")
-        for dir in directories:
-            dir_enum = a + dir
-            r = requests.get(dir_enum)
-            if r.status_code == 404:
-                pass
+    try:
+        system('clear')
+        path = input("Enter wordlist (/usr/share/rockyout.txt): ")
+        check = exists(path)
+        if check == True:
+            sub_list = open(path).read()
+            directories = sub_list.splitlines()
+            a = input("Enter URL (http://google.com/):")
+            print("\n")
+            for dir in directories:
+                dir_enum = a + dir
+                r = requests.get(dir_enum)
+                if r.status_code == 404:
+                    pass
+                else:
+                    print("Directory:", dir_enum)
+        else:
+            print("Wordlist not exist. Try again")
+            time.sleep(5)
+            sens()
+            b = input("\n\n Do you want scan again (y/n): ")
+            if b == 'y' or b == 'Y':
+                sens()
             else:
-                print("Directory:", dir_enum)
-    else:
-        print("Wordlist not exist. Try again")
+                system('./owasp/main.py')
+
+    except KeyboardInterrupt:
+        a = input("\n\nDo you want to EXIT (y/n): ")
+        if a == 'n' or a == 'N':
+            sens()
+        else:
+            system('./owasp/main.py')
+
+    except:
+        print (colored("\n\nYour entry was wrong.\n","red"))
+        print(colored("Try correct url format (http://google.com)", "green"))
         time.sleep(5)
         sens()
