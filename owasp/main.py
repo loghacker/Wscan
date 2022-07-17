@@ -6,11 +6,16 @@ try:
     system('clear')
     print("""
     Choose option:
-        1. Sql injection
-        2. XSS injection
-        3. Broken access control / IDOR 
-        4. Broken Authentication Control 
-        5. Sensitive data exposure
+        1.  Injection
+        2.  Broken Authentication and Session Management
+        3.  Sensitive data exposure
+        4.  XML External Entites (XXE)
+        5.  Broken access control / IDOR
+        6.  Security Misconfiguration
+        7.  Cross-site scripting (XSS)
+        8.  Insecure Deserialization
+        9.  Using Components with Known Vulnerabilities
+        10. Insufficient Logging and Monitoring
         
         Enter 0 to go back
     """)
@@ -18,14 +23,24 @@ try:
 
     if a == 1:
         scan.sqli()
-    elif a == 2:
-        scan.xss()
-    elif a==3:
-        scan.idor()
-    elif a==4:
+    elif a==2:
         scan.bac()
-    elif a==5:
+    elif a==3:
         scan.sens()
+    elif a==4:
+        scan.()
+    elif a==5:
+        scan.idor()
+    elif a==6:
+        scan.()
+    elif a == 7:
+        scan.xss()
+    elif a==8:
+        scan.()
+    elif a==9:
+        scan.()
+    elif a==10:
+        scan.()
     elif a==0:
         system("./main.py")
     else:
