@@ -1,2 +1,4 @@
 requests #web requests
 bs4 #
+pyfiglet
+termcolor
