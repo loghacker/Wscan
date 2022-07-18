@@ -367,5 +367,47 @@ def id():
     userDeserialized = pickle.loads(raw_data)
     print(userDeserialized.name)
 
-def sm():
-    pass
+def xxe():
+    try:
+        system('clear')
+        url = input("Enter url: ")
+        x = requests.get(url)
+        a = x.headers['Content-Type']
+        print('\n\nContent type: ', a)
+
+        if 'xml' in a:
+            print("\nThis page seems vulnerable to XML external entity (XXE) injection")
+            b = input("\n\n Do you want scan again (y/n): ")
+            if b == 'y' or b == 'Y':
+                xxe()
+            else:
+                system('./owasp/main.py')
+                b = input("\n\n Do you want scan again (y/n): ")
+                if b == 'y' or b == 'Y':
+                    xxe()
+                else:
+                    system('./owasp/main.py')
+        else:
+            print("\n This page doesn't contain XML data, So this is Secure to XXE")
+            b = input("\n\n Do you want scan again (y/n): ")
+            if b == 'y' or b == 'Y':
+                xxe()
+            else:
+                system('./owasp/main.py')
+                b = input("\n\n Do you want scan again (y/n): ")
+                if b == 'y' or b == 'Y':
+                    xxe()
+                else:
+                    system('./owasp/main.py')
+    except KeyboardInterrupt:
+        a = input("\n\nDo you want to EXIT (y/n): ")
+        if a == 'n' or a == 'N':
+            xxe()
+        else:
+            system('./owasp/main.py')
+
+    except:
+        print (colored("\n\nYour entry was wrong.\n","red"))
+        print(colored("Try correct url format (http://google.com)", "green"))
+        time.sleep(5)
+        xxe()
