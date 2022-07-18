@@ -1,10 +1,13 @@
 #!/usr/bin/python3
 import time
-from termcolor import colored
 import urllib.request
 import webbrowser
 import requests
 import base64
+import pickle
+import json
+from json import JSONEncoder
+from termcolor import colored
 from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin
 from pprint import pprint
@@ -219,7 +222,7 @@ You can't do idor attack on this website""")
         else:
             system('./owasp/main.py')
 
-
+#Broken authentication Control
 def bac():
     try:
         system('clear')
@@ -251,7 +254,7 @@ def bac():
         time.sleep(5)
         bac()
 
-
+#sensitive data exposure
 def sens():
     try:
         system('clear')
@@ -292,6 +295,8 @@ def sens():
         time.sleep(5)
         sens()
 
+
+#Physhing
 def phish():
     try:
         system('clear')
@@ -335,17 +340,32 @@ def phish():
         print(colored("Try correct url format (google.com or IP)", "green"))
         time.sleep(5)
         phish()
-def xxe():
-    pass
 
-def api():
-    pass
 
 def known():
     pass
 
 def id():
-    pass
+    class User(object):
+        def _init_(self, name):
+            self.name = name
+
+    # Create the user object and serialize the object using pickle libary
+    user = User('david')
+    serialized = pickle.dumps(user)
+    filename = 'user.file'
+
+    # We create a file with the serialized data called 'user.file'
+    with open(filename, 'wb') as file_object:
+        file_object.write(serialized)
+
+    # In here, we open the file that we just created and read the content.
+    with open(filename, 'rb') as file_object:
+        raw_data = file_object.read()
+
+    # We deserialized the data using pickle.loads that receives the stream data.
+    userDeserialized = pickle.loads(raw_data)
+    print(userDeserialized.name)
 
 def sm():
     pass
