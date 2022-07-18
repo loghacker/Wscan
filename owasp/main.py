@@ -28,19 +28,19 @@ try:
     elif a==3:
         scan.sens()
     elif a==4:
-        scan.()
+        scan.xxe()
     elif a==5:
         scan.idor()
     elif a==6:
-        scan.()
+        scan.sm()
     elif a == 7:
         scan.xss()
     elif a==8:
-        scan.()
+        scan.id()
     elif a==9:
-        scan.()
+        scan.known()
     elif a==10:
-        scan.()
+        scan.api()
     elif a==0:
         system("./main.py")
     else:

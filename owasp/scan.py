@@ -290,3 +290,14 @@ def sens():
         print(colored("Try correct url format (http://google.com)", "green"))
         time.sleep(5)
         sens()
+
+    def xxe():
+        pass
+    def api():
+        pass
+    def known():
+        pass
+    def id():
+        pass
+    def sm():
+        pass
