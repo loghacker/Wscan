@@ -14,8 +14,7 @@ try:
         6.  Security Misconfiguration
         7.  Cross-site scripting (XSS)
         8.  Insecure Deserialization
-        9.  Using Components with Known Vulnerabilities
-        10. Insufficient Logging and Monitoring
+        9.  Phishing Detector
         
         Enter 0 to go back
     """)
@@ -38,9 +37,7 @@ try:
     elif a==8:
         scan.id()
     elif a==9:
-        scan.known()
-    elif a==10:
-        scan.api()
+        scan.phish()
     elif a==0:
         system("./main.py")
     else:

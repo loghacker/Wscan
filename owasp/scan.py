@@ -4,6 +4,7 @@ from termcolor import colored
 import urllib.request
 import webbrowser
 import requests
+import base64
 from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin
 from pprint import pprint
@@ -291,13 +292,60 @@ def sens():
         time.sleep(5)
         sens()
 
-    def xxe():
-        pass
-    def api():
-        pass
-    def known():
-        pass
-    def id():
-        pass
-    def sm():
-        pass
+def phish():
+    try:
+        system('clear')
+        base64_message = 'Lw=='
+        base64_bytes = base64_message.encode('ascii')
+        message_bytes = base64.b64decode(base64_bytes)
+        message = message_bytes.decode('ascii')
+        a = message
+
+        def get_url():
+            domain = input("\nEnter domain or IP (10.13.1.1 or domain): ")
+            if 'ngrok' in domain:
+                print("\nThis site seems to be a phishing link")
+            else:
+                finaldomain = domain + a
+                contents = requests.get(
+                    'https://api.hetrixtools.com/v2/8f2c60680cdb0cb53b87b68e86a86bda/blacklist-check/domain/'
+                    + finaldomain).json()
+                url = contents['blacklisted_count']
+
+                if url > 0:
+                    print("\ndomain is blaclisted")
+                elif url == 0:
+                    print("\nThe domain is not a phishing site")
+
+        get_url()
+        b = input("\n\n Do you want scan again (y/n): ")
+        if b == 'y' or b == 'Y':
+            phish()
+        else:
+            system('./owasp/main.py')
+    except KeyboardInterrupt:
+        a = input("\n\nDo you want to EXIT (y/n): ")
+        if a == 'n' or a == 'N':
+            phish()
+        else:
+            system('./owasp/main.py')
+
+    except:
+        print (colored("\n\nYour entry was wrong.\n","red"))
+        print(colored("Try correct url format (google.com or IP)", "green"))
+        time.sleep(5)
+        phish()
+def xxe():
+    pass
+
+def api():
+    pass
+
+def known():
+    pass
+
+def id():
+    pass
+
+def sm():
+    pass
