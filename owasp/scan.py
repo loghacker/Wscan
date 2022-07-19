@@ -6,6 +6,8 @@ import requests
 import base64
 import pickle
 import json
+import datetime
+import pyfiglet
 from json import JSONEncoder
 from termcolor import colored
 from bs4 import BeautifulSoup as bs
@@ -13,6 +15,20 @@ from urllib.parse import urljoin
 from pprint import pprint
 from os import system
 from os.path import exists
+
+# Title Portion
+system('clear')	#clears the screen
+print('-'*60)
+wscan = colored(pyfiglet.figlet_format("W s c a n"), 'cyan')
+for i in wscan:
+    print(i, end='')
+    time.sleep(.001)
+
+print('-'*60)
+date = datetime.datetime.now()
+print("date", date.date())
+print("time", date.time())
+print('-'*60, "\n")
 
 #sql injection
 def sqli():
