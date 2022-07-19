@@ -349,7 +349,7 @@ def sm():
         from threading import Thread
         import os
 
-        url = input("Enter url (https://requestswebsite.notanothercoder.repl.co/confirm-login): ")
+        url = input("Enter url ( https://requestswebsite.notanothercoder.repl.co/confirm-login ): ")
         username = input("Enter username (admin): ")
         n = int(input("Enter password length(8): "))
         tn = int(input("Enter thread count(20): "))
@@ -394,14 +394,8 @@ def sm():
                         f.write(passwd)
                     break
 
-        for x in range(tn):
+        for x in range(tn): 
             Thread(target=main).start()
-        b = input("\n\n Do you want scan again (y/n): ")
-        if b == 'y' or b == 'Y':
-            sm()
-        else:
-            system('./owasp/main.py')
-
     except KeyboardInterrupt:
         a = input("\n\nDo you want to EXIT (y/n): ")
         if a == 'n' or a == 'N':
@@ -414,29 +408,6 @@ def sm():
         print(colored("Try correct url format (http://google.com)", "green"))
         time.sleep(5)
         sm()
-#Insecure Deslization
-def id():
-    class User(object):
-        def _init_(self, name):
-            self.name = name
-
-    # Create the user object and serialize the object using pickle libary
-    user = User('david')
-    serialized = pickle.dumps(user)
-    filename = 'user.file'
-
-    # We create a file with the serialized data called 'user.file'
-    with open(filename, 'wb') as file_object:
-        file_object.write(serialized)
-
-    # In here, we open the file that we just created and read the content.
-    with open(filename, 'rb') as file_object:
-        raw_data = file_object.read()
-
-    # We deserialized the data using pickle.loads that receives the stream data.
-    userDeserialized = pickle.loads(raw_data)
-    print(userDeserialized.name)
-
 
 #external xml entity
 def xxe():
