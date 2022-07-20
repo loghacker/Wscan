@@ -4,9 +4,7 @@ import urllib.request
 import webbrowser
 import requests
 import base64
-import pickle
-import json
-from json import JSONEncoder
+import sys
 from termcolor import colored
 from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin
@@ -258,13 +256,12 @@ def bac():
 def sens():
     try:
         system('clear')
-        path = input("Enter wordlist (/usr/share/rockyout.txt): ")
-        check = exists(path)
-        if check == True:
+        path = input("Enter wordlist path: ")
+        if exists(path):
             sub_list = open(path).read()
             directories = sub_list.splitlines()
-            a = input("Enter URL (http://google.com/):")
-            print("\n")
+            a = input("Enter URL: ")
+
             for dir in directories:
                 dir_enum = a + dir
                 r = requests.get(dir_enum)
@@ -273,15 +270,11 @@ def sens():
                 else:
                     print("Directory:", dir_enum)
         else:
-            print("Wordlist not exist. Try again")
-            time.sleep(5)
+            print("Wordlist not exists. Try again")
+            time.sleep(2)
             sens()
-            b = input("\n\n Do you want scan again (y/n): ")
-            if b == 'y' or b == 'Y':
-                sens()
-            else:
-                system('./owasp/main.py')
 
+        # adding input option for url and wordlist
     except KeyboardInterrupt:
         a = input("\n\nDo you want to EXIT (y/n): ")
         if a == 'n' or a == 'N':
